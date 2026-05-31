@@ -322,6 +322,9 @@ print('Golden Ratio Rectangle: $goldenRect');
 // Nama: Esti Anggraini
 // Nim: 251410031
 // Kelas: SI2A
+// Nama: Esti Anggraini
+// Nim: 251410031
+// Kelas: SI2A
 class Person {
   final String name;
   final int age;
@@ -349,9 +352,9 @@ class Person {
 void main() {
   // Main constructor
   Person p1 = Person(
-    name: "Azriel",
+    name: "Esti",
     age: 19,
-    email: "azriel@gmail.com",
+    email: "Esti@gmail.com",
   );
 
   // Anonymous constructor
@@ -651,7 +654,7 @@ void main() {
 // Nim: 251410031
 // Kelas: SI2A
 
-class ApiResponse<T> {
+class ApiResponse {
   final bool success;
   final T? data;
   final String? error;
@@ -705,10 +708,10 @@ class ApiResponse<T> {
 
   // From JSON
   factory ApiResponse.fromJson(
-    Map<String, dynamic> json,
+    Map json,
     T Function(dynamic) fromJsonT,
   ) {
-    return ApiResponse<T>(
+    return ApiResponse(
       success: json['success'] ?? false,
       data: json['data'] != null ? fromJsonT(json['data']) : null,
       error: json['error'],
@@ -726,10 +729,10 @@ class ApiResponse<T> {
 }
 
 void main() {
-  var success = ApiResponse<String>.success('Data loaded');
-  var error = ApiResponse<String>.error('Server error', 500);
-  var notFound = ApiResponse<String>.notFound();
-  var unauthorized = ApiResponse<String>.unauthorized();
+  var success = ApiResponse.success('Data loaded');
+  var error = ApiResponse.error('Server error', 500);
+  var notFound = ApiResponse.notFound();
+  var unauthorized = ApiResponse.unauthorized();
 
   print(success);
   print(error);
