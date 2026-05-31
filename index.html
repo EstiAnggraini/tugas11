@@ -654,7 +654,7 @@ void main() {
 // Nim: 251410031
 // Kelas: SI2A
 
-class ApiResponse {
+class ApiResponse<T> {
   final bool success;
   final T? data;
   final String? error;
@@ -708,10 +708,10 @@ class ApiResponse {
 
   // From JSON
   factory ApiResponse.fromJson(
-    Map json,
+    Map<String, dynamic> json,
     T Function(dynamic) fromJsonT,
   ) {
-    return ApiResponse(
+    return ApiResponse<T>(
       success: json['success'] ?? false,
       data: json['data'] != null ? fromJsonT(json['data']) : null,
       error: json['error'],
@@ -729,10 +729,10 @@ class ApiResponse {
 }
 
 void main() {
-  var success = ApiResponse.success('Data loaded');
-  var error = ApiResponse.error('Server error', 500);
-  var notFound = ApiResponse.notFound();
-  var unauthorized = ApiResponse.unauthorized();
+  var success = ApiResponse<String>.success('Data loaded');
+  var error = ApiResponse<dynamic>.error('Server error', 500);
+  var notFound = ApiResponse<dynamic>.notFound();
+  var unauthorized = ApiResponse<dynamic>.unauthorized();
 
   print(success);
   print(error);
